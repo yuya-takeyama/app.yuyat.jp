@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css" />
   <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
+  <script type="text/javascript" src="/js/jquery-backstretch.js"></script>
   <script type="text/javascript" src="/js/jp/yuyat/SmartClock.js"></script>
   <script type="text/javascript">
   var ClockDisplay = (function () {
@@ -22,11 +23,17 @@
   })();
 
   jQuery(document).ready(function () {
+    jQuery.backstretch('/img/smart-clock/kaji-meiko.jpg', {speed: 150});
     var provider = jp.yuyat.SmartClock.TimeProvider;
     provider.add_observer(ClockDisplay);
     provider.start(25);
   });
   </script>
+  <style type="text/css">
+  .ui-page {
+    background: none;
+  }
+  </style>
 </head>
 <body>
   <div data-role="page" id="clock">
