@@ -9,7 +9,7 @@
   <script type="text/javascript" src="/js/jp/yuyat/SmartClock.js"></script>
   <script type="text/javascript">
   var ClockDisplay = (function () {
-    var query = '#clock_display', update;
+    var query = '#clock-display', update;
 
     update = function (provider) {
       var time = provider.get_time();
@@ -30,14 +30,13 @@
 </head>
 <body>
   <div data-role="page" id="clock">
-    <div data-role="header">
+    <div data-role="header" data-position="fixed" data-fullscreen="true">
       <h1>SmartClock</h1>
     </div><!-- /header -->
     <div data-role="content">
-      <p id="clock_display"></p>
     </div><!-- /content -->
-    <div data-role="footer">
-      <h4>Page Footer</h4>
+    <div data-role="footer" data-position="fixed">
+      <h4 id="clock-display"></h4>
     </div><!-- /header -->
   </div><!-- /page -->
 </body>
