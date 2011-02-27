@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>SmartClock</title>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css" />
+  <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
+  <script type="text/javascript" src="/js/jp/yuyat/SmartClock.js"></script>
+  <script type="text/javascript">
+  var ClockDisplay = (function () {
+    var query = '#clock_display', update;
+
+    update = function (provider) {
+      var time = provider.get_time();
+      jQuery(query).html('' + time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds());
+    };
+
+    return {
+      update : update
+    };
+  })();
+
+  jQuery(document).ready(function () {
+    var provider = jp.yuyat.SmartClock.TimeProvider;
+    provider.add_observer(ClockDisplay);
+    provider.start(25);
+  });
+  </script>
+</head>
+<body>
+  <div data-role="page" id="clock">
+    <div data-role="header">
+      <h1>SmartClock</h1>
+    </div><!-- /header -->
+    <div data-role="content">
+      <p id="clock_display"></p>
+    </div><!-- /content -->
+    <div data-role="footer">
+      <h4>Page Footer</h4>
+    </div><!-- /header -->
+  </div><!-- /page -->
+</body>
+</html>
