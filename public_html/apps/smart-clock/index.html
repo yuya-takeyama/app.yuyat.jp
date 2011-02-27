@@ -2,19 +2,22 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>SmartClock</title>
+  <title>梶芽衣子時計</title>
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css" />
   <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
   <script type="text/javascript" src="/js/jquery-backstretch.js"></script>
   <script type="text/javascript" src="/js/jp/yuyat/SmartClock.js"></script>
+  <script type="text/javascript" src="/js/jp/yuyat/Util.js"></script>
   <script type="text/javascript">
   var ClockDisplay = (function () {
-    var query = '#clock-display', update;
+    var query = '#clock-display', update, zerofill = jp.yuyat.Util.Number.zerofill;
 
     update = function (provider) {
       var time = provider.get_time();
-      jQuery(query).html('' + time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds());
+      jQuery(query).html('' + zerofill(time.getHours(), 2) + ':' +
+                              zerofill(time.getMinutes(), 2) + ':' +
+                              zerofill(time.getSeconds(), 2));
     };
 
     return {
@@ -33,12 +36,16 @@
   .ui-page {
     background: none;
   }
+
+  #clock-display {
+    font-size: 150%;
+  }
   </style>
 </head>
 <body>
   <div data-role="page" id="clock">
     <div data-role="header" data-position="fixed" data-fullscreen="true">
-      <h1>Stray Cats Rock Clock</h1>
+      <h1>梶芽衣子時計</h1>
     </div><!-- /header -->
     <div data-role="content">
     </div><!-- /content -->
