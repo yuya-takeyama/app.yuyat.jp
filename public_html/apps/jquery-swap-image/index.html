@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>jQuery Swap Image Plugin</title>
+  <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
+  <script type="text/javascript">
+  (function ($) {
+    /**
+     * jQuery Swap Image Plugin.
+     *
+     * @author Yuya Takeyama
+     */
+
+    var name_space = 'swapImage';
+
+    $.fn[name_space] = function (options) {
+      var elements = this;
+
+      var settings = $.extend({
+        "suffix" : "_on"
+      }, options);
+
+      elements.each(function () {
+        $(this).mouseover(function () {
+          this.src = this.src.replace(/\.([a-zA-Z0-9]+)$/, settings.suffix + '.$1');
+        });
+
+        $(this).mouseout(function () {
+          this.src = this.src.replace(new RegExp(settings.suffix + "\.([a-zA-Z0-9]+)$"), '.$1');
+        });
+      });
+
+      return this;
+    };
+  })(jQuery);
+
+  jQuery(document).ready(function () {
+    var $ = jQuery;
+
+    $('.swap-image').swapImage();
+  });
+  </script>
+</head>
+<body>
+  <h1>jQuery Swap Image Plugin</h1>
+  <h2>Description</h2>
+  <div>
+    <p>swap-on-mouseover クラスに属する img 要素にマウスに乗せると, 自動的に画像が切り替わります.</p>
+    <p>画像の切り替えは, ファイル名の規約にに従って行われます.</p>
+    <p>image.png にマウスを乗せると image-on.png になり, マウスが離れると元に戻ります.</p>
+  </div>
+  <h2>Demo</h2>
+  <div><img src="/img/jquery-swap-image/image.png" alt="image" class="swap-image" /></div>
+</body>
+</html>
